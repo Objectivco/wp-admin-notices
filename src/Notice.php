@@ -147,15 +147,20 @@ class Notice {
 			return;
 		}
 
-		$html  = $this->get_title();
-		$html .= $this->get_message();
+		$content = sprintf( '<div class="pressmodo-notice-content">%s</div>', $this->get_title() . $this->get_message() );
+
+		if ( $this->options['image'] ) {
+			$image = sprintf( '<div class="pressmodo-notice-image">%s</div>', $this->options['image'] );
+
+			$content = $image . $content;
+		}
 
 		// Print the notice.
 		printf(
 			'<div id="%1$s" class="%2$s">%3$s</div>',
 			'pressmodo-notice-' . esc_attr( $this->id ), // The ID.
 			esc_attr( $this->get_classes() ), // The classes.
-			$html // The HTML.
+			$content // The HTML.
 		);
 	}
 
