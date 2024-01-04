@@ -251,7 +251,7 @@ class Notice {
 		$message = sprintf( '<div class="pressmodo-notice-content">%s</div>', wpautop( wp_kses_post( $this->message ) ) );
 
 		if ( $this->options['image'] ) {
-			$image = sprintf( '<div class="pressmodo-notice-image">%</div>', $this->options['image'] );
+			$image = sprintf( '<div class="pressmodo-notice-image">%s</div>', $this->options['image'] );
 		}
 
 		return $image . $message;
