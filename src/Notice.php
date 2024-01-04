@@ -248,13 +248,7 @@ class Notice {
 	 * @return string
 	 */
 	public function get_message() {
-		$message = sprintf( '<div class="pressmodo-notice-content">%s</div>', wpautop( wp_kses_post( $this->message ) ) );
-
-		if ( $this->options['image'] ) {
-			$image = sprintf( '<div class="pressmodo-notice-image">%</div>', $this->options['image'] );
-		}
-
-		return $image . $message;
+		return wpautop( wp_kses_post( $this->message ) );
 	}
 
 	/**
