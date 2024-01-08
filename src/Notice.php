@@ -66,6 +66,7 @@ class Notice {
 		'option_prefix' => 'pressmodo_notice_dismissed',
 		'screens'       => array(),
 		'dismissible'   => true,
+		'mode'          => 'regular',
 	);
 
 	/**
@@ -114,6 +115,7 @@ class Notice {
 	 *                            'option_prefix' => (string) The prefix that will be used to build the option (or post-meta) name.
 	 *                                                        Can contain lowercase latin letters and underscores.
 	 *                            'dismissible'   => (bool)   Whether or not the notice can be dismissed. Defaults to true.
+	 *                            'mode'          => (string) The mode. Defaults to regular. Can be 'regular' or 'deferred'
 	 *                        ].
 	 */
 	public function __construct( $id, $title, $message, $options = array() ) {
@@ -221,6 +223,10 @@ class Notice {
 			}
 		}
 
+		if ( $this->get_option( 'mode' ) === 'deferred' ) {
+			$classes[] = 'below-h2';
+		}
+
 		// Combine classes to a string.
 		return implode( ' ', $classes );
 	}
@@ -254,6 +260,14 @@ class Notice {
 	 */
 	public function get_message() {
 		return wpautop( wp_kses_post( $this->message ) );
+	}
+
+	public function get_options() {
+		return $this->options;
+	}
+
+	public function get_option( $key ) {
+		return $this->options[ $key ] ?? false;
 	}
 
 	/**

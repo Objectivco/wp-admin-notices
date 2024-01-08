@@ -115,6 +115,10 @@ class Notices {
 		$notices = $this->get_all();
 
 		foreach ( $notices as $notice ) {
+			if ( $notice->get_option( 'mode' ) === 'deferred' ) {
+				continue;
+			}
+
 			$notice->the_notice();
 		}
 	}
