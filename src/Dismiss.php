@@ -81,14 +81,14 @@ class Dismiss {
 		?>
 		<script>
 		window.addEventListener( 'load', function() {
-			var dismissBtn  = document.querySelector( '#pressmodo-notice-<?php echo esc_attr( $this->id ); ?> .notice-dismiss' );
+			var dismissBtn  = jQuery( '#pressmodo-notice-<?php echo esc_attr( $this->id ); ?> .notice-dismiss' );
 
 			if ( dismissBtn === null ) {
 				return
 			}
 
 			// Add an event listener to the dismiss button.
-			dismissBtn.addEventListener( 'click', function( event ) {
+			dismissBtn.on( 'click', function( event ) {
 				var httpRequest = new XMLHttpRequest(),
 					postData    = '';
 
